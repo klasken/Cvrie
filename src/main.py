@@ -1,41 +1,36 @@
 import sys
-import os
-import numpy as np
-from PIL import Image
-from sklearn.ensemble import RandomForestClassifier
 
-def run_supervised(chemin_dossier):
-    print("Modèle entraîné avec succès !")
+def print_help():
+    """
+    Affiche l'aide sur la sortie d'erreur standard.
+    """
+    print("USAGE:", file=sys.stderr)
+    print("    python3 main.py [filepath]", file=sys.stderr)
+    print("DESCRIPTION:", file=sys.stderr)
+    print("    filepath : chemin vers le jeu de données (CSV ou dossier d'images).", file=sys.stderr)
 
 def main():
-    if len(sys.argv) != 3:
-        sys.stderr.write("Usage: python main.py [supervised|unsupervised] [path_to_dataset]\n")
-        sys.exit(84)
-
-    mode = sys.argv[1]
-    dataset_path = sys.argv[2]
-
-    if not os.path.exists(dataset_path):
-        sys.stderr.write(f"Erreur : Le chemin {dataset_path} n'existe pas.\n")
-        sys.exit(84)
-
     try:
-        if mode == "supervised":
-            print("Lancement de la classification supervisée (CVRIE V1)...")
-            run_supervised(dataset_path)
-
-        elif mode == "unsupervised":
-            print("Lancement du clustering non-supervisé (CVRIE V1)...")
-        else:
-            sys.stderr.write("Erreur : Mode inconnu. Utilisez 'supervised' ou 'unsupervised'.\n")
+        if len(sys.argv) != 2:
+            print("Erreur : Nombre d'arguments invalide.", file=sys.stderr)
+            print_help()
             sys.exit(84)
-
+        filepath = sys.argv[1]
+        try:
+            with open(filepath, 'r') as file:
+                pass
+        except FileNotFoundError:
+            print(f"Erreur : Le fichier ou dossier '{filepath}' est introuvable.", file=sys.stderr)
+            sys.exit(84)
+        except PermissionError:
+            print(f"Erreur : Permission refusée pour lire '{filepath}'.", file=sys.stderr)
+            sys.exit(84)
+        print("Programme CVRIE exécuté avec succès.")
         sys.exit(0)
 
     except Exception as e:
-        sys.stderr.write(f"Erreur critique de CVRIE: {e}\n")
+        print(f"Erreur inattendue du système : {e}", file=sys.stderr)
         sys.exit(84)
 
-
 if __name__ == "__main__":
-    main()  
+    main()
