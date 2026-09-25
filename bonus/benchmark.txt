@@ -1,0 +1,32 @@
+# CVRIE - Benchmark
+
+## 1. Partie supervisée
+
+| Modèle | Résultat observé | Analyse |
+|--------|------------------|---------|
+| Random Forest | Meilleure précision globale | Meilleur compromis entre robustesse et qualité de classification sur les images radiographiques |
+| Régression Logistique | Performance correcte | Plus simple et interprétable, mais moins performant sur des motifs visuels complexes |
+| KNN | Performance correcte, mais plus instable | Sensible à la structure des données et moins adapté à ce type de classification image |
+
+> Le Random Forest est le modèle retenu pour la détection de pneumonie, car il offre la meilleure stabilité et la meilleure capacité à capturer les motifs visuels.
+
+## 2. Partie non supervisée
+
+| Modèle | Score silhouette | Observation |
+|--------|------------------|-------------|
+| K-Means | 0.0103 | Meilleur clustering, plus cohérent et plus interprétable |
+| Clustering hiérarchique | 0.0094 | Très proche du K-Means, mais légèrement moins performant |
+| MiniBatch K-Means | 0.0066 | Solution rapide et simple, mais moins précise sur ce jeu de données |
+
+> Le K-Means est le meilleur modèle pour regrouper les témoignages patients, car il obtient le score silhouette le plus élevé et produit des clusters plus homogènes.
+
+## 3. Interprétation métier
+- Le K-Means est retenu pour la version finale car il produit les clusters les plus cohérents et les plus exploitables.
+- Le Random Forest est retenu pour la classification des radiographies car il donne le meilleur équilibre entre précision et fiabilité.
+
+## 4. Synthèse globale
+Le projet CVRIE V1 repose sur :
+- Random Forest pour la détection de pneumonie ;
+- K-Means pour le regroupement des témoignages patients.
+
+Ce choix est justifié par les performances mesurées et par la meilleure interprétabilité des résultats pour un usage médical.
