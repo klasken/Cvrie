@@ -1,0 +1,11 @@
+# Données et Machine Learning
+numpy==2.5.3
+pandas==3.0.5
+scikit-learn==1.9.1
+
+# Images et visualisation
+pillow==12.3.0
+matplotlib==3.11.2
+
+# Notebooks
+jupyterlab==4.6.3

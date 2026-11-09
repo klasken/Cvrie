@@ -15,3 +15,6 @@ venv/
 data/
 
 *.nbconvert.ipynb
+
+# Résultats générés par le notebook non supervisé
+notebooks/resultats_clustering.csv
